@@ -24,12 +24,13 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 
     const data = response.data.articles;
 
-    for (topic in data) {
-      for (article in data[topic]) {
-        console.log(data[topic][article])
-        cardContainer.append(makeArticleCard(data[topic][article]))
-      }
-    }
+    const key = Object.keys(data);
+
+    key.forEach(topic => {
+      data[topic].forEach(article => {
+        cardContainer.append(makeArticleCard(article))
+      })
+    })
 
   })
 
